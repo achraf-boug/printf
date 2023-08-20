@@ -28,3 +28,18 @@ int _putstr(char *str)
 
 	return (len);
 }
+
+/**
+ * _putint - prints a integer
+ * @number: integer
+ * Return: lenght of number
+ */
+int _putint(int number)
+{
+	if (number < 0)
+		return (_putchar('-') + _putint(-1 * number));
+	else if (number < 10)
+		return (_putchar(number + '0'));
+	else
+		return (_putint(number / 10) + _putint(number % 10));
+}
