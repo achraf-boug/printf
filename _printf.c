@@ -47,6 +47,15 @@ int _printf(const char *format, ...)
 					// print strings and increment lenght
 					len += _putstr(va_arg(argv, char *);
 					break;
+				case ('d'):
+					// print integer and incement lenght
+					len += _putint(va_arg(argv, int));
+                                        break;
+				case ('i'):
+					// The base do not matter as long as
+					// it is casted as int
+					len += _putint(va_arg(argv, int));
+					break;
 				case ('%'):
 					// if a second '%' found, we print it as it is
 					len += _putchar('%');
