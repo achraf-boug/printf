@@ -15,28 +15,26 @@ int _printf(const char *format, ...)
 	 */
 	int i, len = 0;
 	va_list argv;
-	/**
-	 * This is where the fun starts.
-	 * We start by initiating a list of pointers to given arguments.
-	 * Using while loop, we will be printing characters until
-	 * we find our delimiter '%', execute the necessary and keep
-	 * printing.
-	 */
+
+	/*Let's get arguments using va_start*/
 	va_start(argv, format);
+
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
-		{
-			i++; /* Each time '%' is found, we skip the character */
-			if (format[i] == '%')
-				len += _putchar('%');
-			else
-				handle_specifier(format[i], &len, argv);
-		}
-		else
+		/*Using for loop, we print characters and handle specifiers*/
+		/*while incrementing the lenght*/
+		if (format[i] != '%')
 			len += _putchar(format[i]);
+		else
+		{
+			if (format[i + 1] != '\0')
+			/* Making sure we are not at the end*/
+				i++;
+
+			handle_specifier(format[i], &len, argv);
+		}
 	}
-	/* free our argv list of pointers */
+
 	va_end(argv);
 	return (len);
 }

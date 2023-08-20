@@ -12,8 +12,10 @@ void handle_specifier(char specifier, int *len, va_list argv)
 {
 	if (specifier == 'c')
 		(*len) += _putchar(va_arg(argv, int));
-	if (specifier == 's')
+	else if (specifier == 's')
 		(*len) += _putstr(va_arg(argv, char *));
-	if (specifier == 'd' || specifier == 'i')
+	else if (specifier == 'd' || specifier == 'i')
 		(*len) += _putint(va_arg(argv, int));
+	else
+		(*len) += _putchar(specifier);
 }
