@@ -10,17 +10,11 @@ int _printf(const char *format, ...)
 {
 	/**
 	 * i: indexing elements of format
-	 * len: calculating output lenght
+	 * len: calculating the lenght of final output
 	 * argv: getting arguments
 	 */
-	int i = 0; 
-	int len = 0;
+	int i, len = 0;
 	va_list argv;
-
-	/* if format is NULL, no need to run the code.*/
-	if (format == NULL)
-		return (len);
-
 	/**
 	 * This is where the fun starts.
 	 * We start by initiating a list of pointers to given arguments.
@@ -29,47 +23,20 @@ int _printf(const char *format, ...)
 	 * printing.
 	 */
 	va_start(argv, format);
-	while (format[i] != '\0')
+	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-			/**
-			 * Each time '%' is found, we skip the character => i++
-			 */
-			i++;
-			switch (format[i])
-			{
-				case ('c'):
-					// print character and increment lenght
-					len += _putchar(va_arg(argv, int));
-					break;
-				case ('s'):
-					// print strings and increment lenght
-					len += _putstr(va_arg(argv, char *);
-					break;
-				case ('d'):
-					// print integer and incement lenght
-					len += _putint(va_arg(argv, int));
-                                        break;
-				case ('i'):
-					// The base do not matter as long as
-					// it is casted as int
-					len += _putint(va_arg(argv, int));
-					break;
-				case ('%'):
-					// if a second '%' found, we print it as it is
-					len += _putchar('%');
-					break;
-				default:
-					// if anything else, do nothing
-					break;
-			}
+			i++; /* Each time '%' is found, we skip the character */
+			if (format[i] == '%')
+				len += _putchar('%');
+			else
+				handle_specifier(format[i], &len, argv);
 		}
 		else
 			len += _putchar(format[i]);
-		i++;
 	}
-	// free our argv list of pointers
+	/* free our argv list of pointers */
 	va_end(argv);
 	return (len);
 }

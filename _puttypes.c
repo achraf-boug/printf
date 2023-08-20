@@ -1,4 +1,4 @@
-#include "_puttypes.h"
+#include "main.h"
 
 /**
  * _putchar - prints a character
