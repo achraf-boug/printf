@@ -5,9 +5,9 @@
  * @format: string
  * Return: 0 if OK, -1 if KO
  */
-int check_format(char *format)
+int check_format(const char *format)
 {
-	if (!format || (format[0] == '%' && !format[1]))
+	if (!format || (format[0] == '%' && !format[i]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
