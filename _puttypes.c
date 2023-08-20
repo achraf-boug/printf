@@ -23,7 +23,9 @@ int _putstr(char *str)
 	int i;
 	int len = 0;
 
-	for (i = 0; str != NULL && str[i] != '\0'; i++)
+	if (str == NULL)
+		str = "(null)";
+	for (i = 0; str[i] != '\0'; i++)
 		len += _putchar(str[i]);
 
 	return (len);
