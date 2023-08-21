@@ -18,6 +18,10 @@ void handle_specifier(char specifier, int *len, va_list argv)
 		(*len) += _putint(va_arg(argv, int));
 	else if (specifier == 'b')
 		(*len) += putBinary(va_arg(argv, unsigned int));
+	else if (specifier == 'u')
+		(*len) += putUnsignedInt(va_arg(argv, unsigned int));
+	else if (specifier == 'o')
+		(*len) += putOctal(va_arg(argv, unsigned int));
 	else
 		(*len) += _putchar(specifier);
 }
