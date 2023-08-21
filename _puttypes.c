@@ -48,7 +48,7 @@ int _putint(int number)
 
 /**
  * putBinary - prints unsigned integer as binary
- * @argv: argument to be printed
+ * @number: unsigned integer
  * Return: lenght of binary
 */
 int putBinary(unsigned int number)
