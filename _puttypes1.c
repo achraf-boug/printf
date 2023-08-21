@@ -66,3 +66,16 @@ int putHexa(unsigned int number, int isUpper)
 
 	return (len);
 }
+
+/**
+ * putPointer - prints pointer value as hexa
+ * @pointer: address to be printed
+ * Return: return lenght of address
+ */
+int putPointer(void *pointer)
+{
+	unsigned int address = (unsigned int) pointer;
+
+	return (putHexa(address, 0));
+
+}
