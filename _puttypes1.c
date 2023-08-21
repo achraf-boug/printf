@@ -1,15 +1,13 @@
 #include "_puttypes.h"
 
 /**
- * putUnsignedInt - prints Unsigned Int 
+ * putUnsignedInt - prints Unsigned Int
  * @number: Unsigned Int
  * Return: lenght of number
  */
 int putUnsignedInt(unsigned int number)
 {
-	if (number < 0)
-		return (_putchar('-') + (-1 * number));
-	else if (number < 10)
+	if (number < 10)
 		return (_putchar(number + '0'));
 	else
 		return (putUnsignedInt(number / 10) + putUnsignedInt(number % 10));
@@ -29,7 +27,7 @@ int putOctal(unsigned int number)
 		return (_putchar('0'));
 	while (number > 0)
 	{
-		digits[i++] = '0' + (value & 7);
+		digits[i++] = '0' + (number & 7);
 		number = number >> 3;
 	}
 
