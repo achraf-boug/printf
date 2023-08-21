@@ -10,5 +10,6 @@ int _putint(int number);
 int putBinary(unsigned int number);
 int putUnsignedInt(unsigned int number);
 int putOctal(unsigned int number);
+int putHexa(unsigned int number, int isUpper);
 
 #endif
