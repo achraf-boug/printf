@@ -22,6 +22,10 @@ void handle_specifier(char specifier, int *len, va_list argv)
 		(*len) += putUnsignedInt(va_arg(argv, unsigned int));
 	else if (specifier == 'o')
 		(*len) += putOctal(va_arg(argv, unsigned int));
+	else if (specifier == 'x')
+		(*len) += putHexa(va_arg(argv, unsigned int), 0);
+	else if (specifier == 'X')
+		(*len) += putHexa(va_arg(argv, unsigned int), 1);
 	else
 		(*len) += _putchar(specifier);
 }
