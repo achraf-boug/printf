@@ -16,6 +16,8 @@ void handle_specifier(char specifier, int *len, va_list argv)
 		(*len) += _putstr(va_arg(argv, char *));
 	else if (specifier == 'd' || specifier == 'i')
 		(*len) += _putint(va_arg(argv, int));
+	else if (specifier == 'b')
+		(*len) += putBinary(va_arg(arvg, unsigned int));
 	else
 		(*len) += _putchar(specifier);
 }

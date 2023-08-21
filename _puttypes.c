@@ -45,3 +45,20 @@ int _putint(int number)
 	else
 		return (_putint(number / 10) + _putint(number % 10));
 }
+
+/**
+ * putBinary - prints unsigned integer as binary
+ * @argv: argument to be printed
+ * Return: lenght of binary
+*/
+int putBinary(unsigned int number)
+{
+	int len = 0;
+
+	if (number > 1)
+		len += putBinary(number >> 1);
+	len += _putchar('0' + (number & 1));
+
+	return (len);
+}
+
