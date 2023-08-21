@@ -53,7 +53,7 @@ int putHexa(unsigned int number, int isUpper)
 		return (_putchar('0'));
 	while (number > 0)
 	{
-		digit = value & 0xF;
+		digit = number & 0xF;
 		if (digit < 10)
 			digits[i++] = '0' + digit;
 		else
