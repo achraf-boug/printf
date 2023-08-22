@@ -24,7 +24,7 @@ int check_format(const char *format)
  */
 int flush_buffer(char *buffer, int *buf_index, const char *format, int *i)
 {
-	if (*buf_index > BUFFER_SIZE || format[i + 1] != '\0')
+	if (*buf_index > BUFFER_SIZE || format[*i + 1] != '\0')
 	{
 		buffer[*buf_index] = '\0';
 		_putstr(buffer, 0);
@@ -52,8 +52,7 @@ int _printf(const char *format, ...)
 	va_list argv;
 	char buffer[BUFFER_SIZE];
 
-	if (check_format(format) == -1)
-		return (-1);
+	if (check_format(format) == -1) return (-1);
 
 	/*Let's get arguments using va_start*/
 	va_start(argv, format);
