@@ -13,7 +13,7 @@ void handle_specifier(char specifier, int *len, va_list argv)
 	if (specifier == 'c')
 		(*len) += _putchar(va_arg(argv, int));
 	else if (specifier == 's')
-		(*len) += _putstr(va_arg(argv, char *));
+		(*len) += _putstr(va_arg(argv, char *), 1);
 	else if (specifier == 'd' || specifier == 'i')
 		(*len) += _putint(va_arg(argv, int));
 	else if (specifier == 'b')
@@ -30,6 +30,8 @@ void handle_specifier(char specifier, int *len, va_list argv)
 		(*len) += putPointer(va_arg(argv, void *));
 	else if (specifier == 'R')
 		(*len) += putRot13(va_arg(argv, char *));
+	else if (specifier == 'r')
+		(*len) += _putstr(va_arg(argv, char *), 0);
 	else
 		(*len) += _putchar(specifier);
 }

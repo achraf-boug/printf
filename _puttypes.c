@@ -18,15 +18,21 @@ int _putchar(char c)
  * @str: string to print
  * Return: lenght of string
  */
-int _putstr(char *str)
+int _putstr(char *str, int reverse)
 {
-	int i;
-	int len = 0;
+	int i = 0, len = 0;
 
 	if (str == NULL)
+	{
+		reverse = 1;
 		str = "(nil)";
-	for (i = 0; str[i] != '\0'; i++)
-		len += _putchar(str[i]);
+	}
+	if (reverse)
+		while (str[i] != '\0')
+			len += _putchar(str[i++]);
+	else
+		while (i > 0)
+			len += _putchar(str[--i]);
 
 	return (len);
 }
