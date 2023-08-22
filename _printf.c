@@ -63,8 +63,7 @@ int _printf(const char *format, ...)
 				|| (format[i + 1] == '\0'))
 			i++;
 		else
-				handle_specifier(format[i], &len, argv);
-		}
+			handle_specifier(format[i], &len, argv);
 	}
 
 	/* print remaining elements in Buffer */
