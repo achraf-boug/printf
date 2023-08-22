@@ -12,5 +12,6 @@ int putUnsignedInt(unsigned int number);
 int putOctal(unsigned int number);
 int putHexa(unsigned int number, int isUpper);
 int putPointer(void *pointer);
+int putRot13(char *str);
 
 #endif
