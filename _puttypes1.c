@@ -80,7 +80,7 @@ int putPointer(void *pointer)
 	int digit;
 
 	if (pointer == NULL)
-		return (_putstr("(nil)"));
+		return (_putstr("(nil)", 0));
 
 	if (number == 0)
 		return (_putchar('0'));
@@ -112,7 +112,7 @@ int putRot13(char *str)
 	int i, character, len = 0;
 
 	if (str == NULL)
-		return (_putstr("(nil)"));
+		return (_putstr("(nil)", 0));
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		character = (int) str[i];

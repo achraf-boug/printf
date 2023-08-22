@@ -25,13 +25,17 @@ int _putstr(char *str, int reverse)
 
 	if (str == NULL)
 	{
-		reverse = 1;
+		reverse = 0;
 		str = "(nil)";
 	}
+	while (str[i] != '\0')
+	{
+		if (!reverse)
+			len += _putchar(str[i]);
+		i++;
+	}
+
 	if (reverse)
-		while (str[i] != '\0')
-			len += _putchar(str[i++]);
-	else
 		while (i > 0)
 			len += _putchar(str[--i]);
 
