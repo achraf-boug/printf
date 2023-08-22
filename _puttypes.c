@@ -16,6 +16,7 @@ int _putchar(char c)
 /**
  * _putstr - prints a character
  * @str: string to print
+ * @reverse: flag to reverse string
  * Return: lenght of string
  */
 int _putstr(char *str, int reverse)
