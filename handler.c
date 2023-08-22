@@ -33,7 +33,7 @@ void handle_specifier(char specifier, int *len, va_list argv)
 	else if (specifier == 'r')
 		(*len) += _putstr(va_arg(argv, char *), 1);
 	else if (specifier == 'S')
-		(*len) += converSpecialChar(va_arg(argv, char *));
+		(*len) += convertSpecialChar(va_arg(argv, char *));
 	else
 		(*len) += _putchar(specifier);
 }
