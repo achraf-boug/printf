@@ -59,7 +59,7 @@ int _printf(const char *format, ...)
 			(buffer[buf_index++] = format[i])
 			len++;
 		}
-		else if ((flush_buffer(buffer, &buf_index), !format[i + 1]) 
+		else if ((flush_buffer(buffer, &buf_index), !format[i + 1])
 				|| (format[i + 1] == '\0'))
 			i++;
 		else
