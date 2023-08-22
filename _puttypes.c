@@ -7,10 +7,7 @@
  */
 int _putchar(char c)
 {
-	write(1, &c, 1);
-	if (c == '\0')
-		return (0);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 /**
@@ -21,24 +18,29 @@ int _putchar(char c)
  */
 int _putstr(char *str, int reverse)
 {
-	int i = 0, len = 0;
+	int len = 0;
+	char *end = str;
 
 	if (str == NULL)
 	{
 		reverse = 0;
 		str = "(nil)";
 	}
-	while (str[i] != '\0')
+	if (!reverse)
 	{
-		if (!reverse)
-			len += _putchar(str[i]);
-		i++;
+		while (*str != '\0')
+		{
+			len += _putchar(*str);
+			str++;
+		}
+	} else
+	{
+		while (*end != '\0')
+			end++;
+
+		while (end > str)
+			len += _putchar(*(--end));
 	}
-
-	if (reverse)
-		while (i > 0)
-			len += _putchar(str[--i]);
-
 	return (len);
 }
 
