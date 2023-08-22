@@ -56,14 +56,15 @@ int _printf(const char *format, ...)
 		/*while incrementing the lenght*/
 		if (format[i] != '%')
 		{
-			buffer[buf_index++] = format[i];
+			(buffer[buf_index++] = format[i])
 			len++;
 		}
 		else if ((flush_buffer(buffer, &buf_index), !format[i + 1])
 				|| (format[i + 1] == '\0'))
 			i++;
 		else
-			handle_specifier(format[i], &len, argv);
+				handle_specifier(format[i], &len, argv);
+		}
 	}
 
 	/* print remaining elements in Buffer */
