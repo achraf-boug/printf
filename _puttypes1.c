@@ -74,8 +74,7 @@ int putHexa(unsigned int number, int isUpper)
  */
 int putPointer(void *pointer)
 {
-	unsigned int address = (unsigned int) pointer;
+	uintptr_t address = (uintptr_t) pointer;
 
 	return (putHexa(address, 0));
-
 }
