@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define BUFFER_SIZE 1024
-
 /**
  * check_format - checks format for unhandled cases
  * @format: string
@@ -17,18 +15,19 @@ int check_format(const char *format)
 }
 
 /**
- * buffer_handler - flush the buffer from its content
+ * flush_buffer - flush the buffer from its content
  * @buffer: list of char
  * @buf_index: index of last element
+ * @format : output string
  * @i: index of format
  * Return: if done return 1, else 0
  */
-int flush_buffer(char *buffer, int *buf_index, int *i)
+int flush_buffer(char *buffer, int *buf_index, const char *format, int *i)
 {
-	if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
+	if (*buf_index > BUFFER_SIZE || format[i + 1] != '\0')
 	{
 		buffer[*buf_index] = '\0';
-		_putstr(buffer);
+		_putstr(buffer, 0);
 		*buf_index = 0;
 		(*i)++;
 		return (1);
@@ -68,11 +67,11 @@ int _printf(const char *format, ...)
 			/* Save elements in buffer*/
 			buffer[buf_index++] = format[i];
 			len++;
-			flush_buffer(buffer, &buf_index, &i);
+			flush_buffer(buffer, &buf_index, format, &i);
 		}
 		else
 		{
-			if (!flush_buffer(buffer, &buf_index, &i))
+			if (!flush_buffer(buffer, &buf_index, format, &i))
 			{
 				i++;
 				handle_specifier(format[i], &len, argv);
@@ -81,7 +80,7 @@ int _printf(const char *format, ...)
 	}
 
 	/* print remaining elements in Buffer */
-	flush_buffer(buffer, &buf_index, &i);
+	flush_buffer(buffer, &buf_index, format, &i);
 
 	va_end(argv);
 	return (len);
