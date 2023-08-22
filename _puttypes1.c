@@ -74,7 +74,27 @@ int putHexa(unsigned int number, int isUpper)
  */
 int putPointer(void *pointer)
 {
-	uintptr_t address = (uintptr_t) pointer;
+	unsigned long int number = (unsigned long int) pointer;
+	char digits[40];
+        int len = 0, i = 0;
+        int digit;
 
-	return (putHexa(address, 0));
+        if (number == 0)
+                return (_putchar('0'));
+        while (number > 0)
+        {
+                digit = number & 0xF;
+                if (digit < 10)
+                        digits[i++] = '0' + digit;
+                else
+                        digits[i++] = 'a' + (digit - 10);
+                number = number >> 4;
+        }
+	
+	len += _putchar('0');
+        len += _putchar('x');
+        while (i > 0)
+                len += _putchar(digits[--i]);
+
+        return (len);
 }
