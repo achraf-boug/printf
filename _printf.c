@@ -54,9 +54,13 @@ int _printf(const char *format, ...)
 	{
 		/*Using for loop, we print characters and handle specifiers*/
 		/*while incrementing the lenght*/
-		if (format[i] != '%' && (buffer[buf_index++] = format[i]))
+		if (format[i] != '%')
+		{
+			(buffer[buf_index++] = format[i])
 			len++;
-		else if ((flush_buffer(buffer, &buf_index), !format[i + 1]) || (format[i + 1] == '\0'))
+		}
+		else if ((flush_buffer(buffer, &buf_index), !format[i + 1]) 
+				|| (format[i + 1] == '\0'))
 			i++;
 		else
 				handle_specifier(format[i], &len, argv);
