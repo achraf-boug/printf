@@ -28,6 +28,8 @@ void handle_specifier(char specifier, int *len, va_list argv)
 		(*len) += putHexa(va_arg(argv, unsigned int), 1);
 	else if (specifier == 'p')
 		(*len) += putPointer(va_arg(argv, void *));
+	else if (specifier == 'R')
+		(*len) += putRot13(va_arg(argv, char *));
 	else
 		(*len) += _putchar(specifier);
 }
