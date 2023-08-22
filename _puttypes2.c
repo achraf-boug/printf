@@ -9,7 +9,7 @@ int convertSpecialChar(char *str)
 	int i = 0, len = 0, elem;
 
 	if (str == NULL)
-		return (_putstr("(nil)"));
+		return (_putstr("(nil)", 0));
 
 	while (str[i] != '\0')
 	{
