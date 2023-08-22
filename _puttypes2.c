@@ -14,10 +14,14 @@ int convertSpecialChar(char *str)
 	while (str[i] != '\0')
 	{
 		elem = (unsigned int) str[i++];
-		if (elem < 32 || elem >= 127)
+		if (elem <= 16)
 		{
-			len += _putchar('\\');
-			len += _putchar('x');
+			len += _putstr("\\x0");
+			len += putHexa(elem, 1);
+		}
+		else if (elem < 32 || elem >= 127)
+		{
+			len += _putstr("\\x");
 			len += putHexa(elem, 1);
 		}
 		else
