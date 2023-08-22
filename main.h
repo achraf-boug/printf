@@ -9,7 +9,7 @@
 
 int check_format(const char *format);
 void handle_specifier(char specifier, int *len, va_list argv);
-void flush_buffer(char *buffer, int *buf_index);
+int flush_buffer(char *buffer, int *buf_index, const char *format, int *i);
 int _printf(const char *format, ...);
 
 #endif
