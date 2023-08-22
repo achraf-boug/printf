@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 		/*while incrementing the lenght*/
 		if (format[i] != '%')
 		{
-			(buffer[buf_index++] = format[i])
+			buffer[buf_index++] = format[i];
 			len++;
 		}
 		else if ((flush_buffer(buffer, &buf_index), !format[i + 1])
