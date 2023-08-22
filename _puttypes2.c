@@ -8,6 +8,9 @@ int convertSpecialChar(char *str)
 {
 	int i = 0, len = 0, elem;
 
+	if (str == NULL)
+		return (_putstr("(nil)"));
+
 	while (str[i] != '\0')
 	{
 		elem = (unsigned int) str[i++];
