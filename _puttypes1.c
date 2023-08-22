@@ -101,3 +101,33 @@ int putPointer(void *pointer)
 
 	return (len);
 }
+
+/**
+ * putRot13 - prints strings ROT13
+ * @str: string to be modified and printed
+ * Return: lenght of strings
+ */
+int putRot13(char *str)
+{
+	int i, character, len = 0;
+
+	if (str == NULL)
+		return (_putstr("(nil)"));
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		character = (int) str[i];
+		if (character >= 97 && character <= 122)
+		{
+			character += 13;
+			character = (character > 122) ? 97 + (character - 123) : character;
+			len += _putchar(character);
+		} else if (character >= 65 && character <= 90)
+		{
+			character += 13;
+			character = (character > 90) ? 65 + (character - 91) : character;
+			len += _putchar(character);
+		} else
+			len += _putchar(character);
+	}
+	return (len);
+}
