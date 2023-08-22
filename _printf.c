@@ -17,6 +17,19 @@ int check_format(const char *format)
 }
 
 /**
+ * buffer_handler - flush the buffer from its content
+ * @buffer: list of char
+ * @buf_index: index of last element
+ * Return: Void
+ */
+void buffer_handler(char *buffer, int *buf_index)
+{
+	buffer[*buf_index] = '\0';
+	_putstr(buffer);
+	*buf_index = 0;
+}
+
+/**
  * _printf - function that produces output according to a format
  * @format: string to be printed
  * Return: output lenght
@@ -42,35 +55,32 @@ int _printf(const char *format, ...)
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
 		/*Using for loop, we print characters and handle specifiers*/
-		if (buf_index > BUFFER_SIZE || format[i] != '\n')
-		{
-			buffer[buf_index] = '\0';
-			_putstr(buffer);
-			buf_index = 0;
-		}
 		/*while incrementing the lenght*/
 		if (format[i] != '%')
 		{
 			/* Save elements in buffer*/
 			buffer[buf_index++] = format[i];
 			len++;
+			if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
+				buffer_handler(buffer, &buf_index);
+				i++;
 		}
 		else
 		{
-			if (format[i + 1] != '\0')
-			/* Making sure we are not at the end*/
+			if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
+			{
+				buffer_handler(buffer, &buf_index);
 				i++;
-
-			handle_specifier(format[i], &len, argv);
+			} else
+			{
+				i++;
+				handle_specifier(format[i], &len, argv);
+			}
 		}
 	}
 
 	/* print remaining elements in Buffer */
-	if (buf_index > 0)
-	{
-		buffer[buf_index] = '\0';
-		_putstr(buffer);
-	}
+	buffer_handler(buffer, &buf_index);
 
 	va_end(argv);
 	return (len);
