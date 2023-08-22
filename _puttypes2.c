@@ -16,12 +16,12 @@ int convertSpecialChar(char *str)
 		elem = (unsigned int) str[i++];
 		if (elem <= 16)
 		{
-			len += _putstr("\\x0");
+			len += _putstr("\\x0", 0);
 			len += putHexa(elem, 1);
 		}
 		else if (elem < 32 || elem >= 127)
 		{
-			len += _putstr("\\x");
+			len += _putstr("\\x", 0);
 			len += putHexa(elem, 1);
 		}
 		else
