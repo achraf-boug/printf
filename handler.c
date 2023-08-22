@@ -27,7 +27,7 @@ void handle_specifier(char specifier, int *len, va_list argv)
 	else if (specifier == 'X')
 		(*len) += putHexa(va_arg(argv, unsigned int), 1);
 	else if (specifier == 'p')
-		(*len) += putPointer(va_arg(argv, void *);
+		(*len) += putPointer(va_arg(argv, void *));
 	else
 		(*len) += _putchar(specifier);
 }
