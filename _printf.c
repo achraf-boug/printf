@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define BUFFER_SIZE 1024
-
 /**
  * check_format - checks format for unhandled cases
  * @format: string
@@ -29,9 +27,8 @@ int _printf(const char *format, ...)
 	 * len: calculating the lenght of final output
 	 * argv: getting arguments
 	 */
-	int i, len = 0, buf_index = 0;
+	int i, len = 0;
 	va_list argv;
-	char buffer[BUFFER_SIZE];
 
 	if (check_format(format) == -1)
 		return (-1);
@@ -42,19 +39,9 @@ int _printf(const char *format, ...)
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
 		/*Using for loop, we print characters and handle specifiers*/
-		if (buf_index > BUFFER_SIZE || format[i] != '\n')
-		{
-			buffer[buf_index] = '\0';
-			_putstr(buffer);
-			buf_index = 0;
-		}
 		/*while incrementing the lenght*/
 		if (format[i] != '%')
-		{
-			/* Save elements in buffer*/
-			buffer[buf_index++] = format[i];
-			len++;
-		}
+			len += _putchar(format[i]);
 		else
 		{
 			if (format[i + 1] != '\0')
@@ -63,13 +50,6 @@ int _printf(const char *format, ...)
 
 			handle_specifier(format[i], &len, argv);
 		}
-	}
-
-	/* print remaining elements in Buffer */
-	if (buf_index > 0)
-	{
-		buffer[buf_index] = '\0';
-		_putstr(buffer);
 	}
 
 	va_end(argv);
