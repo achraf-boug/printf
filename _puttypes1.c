@@ -79,6 +79,9 @@ int putPointer(void *pointer)
 	int len = 0, i = 0;
 	int digit;
 
+	if (pointer == NULL)
+		return (_putstr("(nil)"));
+
 	if (number == 0)
 		return (_putchar('0'));
 	while (number > 0)
