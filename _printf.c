@@ -20,13 +20,20 @@ int check_format(const char *format)
  * buffer_handler - flush the buffer from its content
  * @buffer: list of char
  * @buf_index: index of last element
- * Return: Void
+ * @i: index of format
+ * Return: if done return 1, else 0
  */
-void buffer_handler(char *buffer, int *buf_index)
+int flush_buffer(char *buffer, int *buf_index, int *i)
 {
-	buffer[*buf_index] = '\0';
-	_putstr(buffer);
-	*buf_index = 0;
+	if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
+	{
+		buffer[*buf_index] = '\0';
+		_putstr(buffer);
+		*buf_index = 0;
+		(*i)++;
+		return (1);
+	}
+	return (0);
 }
 
 /**
@@ -61,17 +68,11 @@ int _printf(const char *format, ...)
 			/* Save elements in buffer*/
 			buffer[buf_index++] = format[i];
 			len++;
-			if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
-				buffer_handler(buffer, &buf_index);
-				i++;
+			flush_buffer(buffer, &buf_index, &i);
 		}
 		else
 		{
-			if (buf_index > BUFFER_SIZE || format[i + 1] != '\0')
-			{
-				buffer_handler(buffer, &buf_index);
-				i++;
-			} else
+			if (!flush_buffer(buffer, &buf_index, &i))
 			{
 				i++;
 				handle_specifier(format[i], &len, argv);
@@ -80,7 +81,7 @@ int _printf(const char *format, ...)
 	}
 
 	/* print remaining elements in Buffer */
-	buffer_handler(buffer, &buf_index);
+	flush_buffer(buffer, &buf_index, &i);
 
 	va_end(argv);
 	return (len);
